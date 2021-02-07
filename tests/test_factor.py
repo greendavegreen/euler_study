@@ -7,3 +7,7 @@ def test_factor():
 
 def test_multi_factor():
     assert [7, 7] == list(factor.factor(49))
+
+
+def test_small_factor():
+    assert [3,5] == list(factor.factor(15))

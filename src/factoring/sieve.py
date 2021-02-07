@@ -1,6 +1,7 @@
-from math import sqrt
-from itertools import cycle
-from typing import Iterable
+from collections import deque
+from itertools import cycle, islice
+
+from collections.abc import Iterable
 
 
 def primes() -> Iterable[int]:
@@ -45,3 +46,12 @@ def primes() -> Iterable[int]:
             if candidate % p == 0:
                 candidate += next(gap)
                 break
+
+
+def n_primes(count: int):
+    return islice(primes(), count)
+
+
+def nth_prime(index: int):
+    dd = deque(n_primes(index), maxlen=1)
+    return dd.pop()

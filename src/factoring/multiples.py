@@ -2,8 +2,13 @@
 
 Efficient algorithms for finding all multiples of multiple bases.
 """
+from collections import Counter
+from functools import reduce
 from itertools import chain
+from operator import mul
 from typing import List, Iterable
+
+from factoring import factor
 
 
 def _multiples_up_to(bases: List[int], limit: int) -> List[Iterable]:
@@ -62,5 +67,13 @@ def unique_multiples2(bases: List[int], limit: int) -> Iterable:
                 break
 
 
+def lcm(items):
+    c = Counter()
+    for n in items:
+        c = c | Counter(factor.factor(n))
+
+    return reduce(mul, c.elements(), 1)
+
+
 if __name__ == '__main__':
-    print(multiples([3, 5], 10))
+    print(lcm(range(1,10)))

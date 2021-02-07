@@ -14,12 +14,12 @@ def factor_using_prime_sequence(x, candidates):
     f = next(candidates)
     while f <= factor_upper_bound:
         while residue % f == 0:
-            residue = residue / f
+            residue = residue // f
             yield f
         f = next(candidates)
 
     if residue != 1:
-        raise RuntimeError("residue is not one!")
+        yield residue
 
 
 def timed_factor(title: AnyStr, val: int, items: Iterable[int]):
